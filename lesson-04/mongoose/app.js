@@ -1,4 +1,5 @@
 const path = require('path');
+const cors = require('cors') // Place this with other requires (like 'path' and 'express')
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -32,9 +33,29 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+
+
+
+const corsOptions = {
+  origin: "https://treysonsearle-cse341.herokuapp.com/",
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  family: 4
+};
+
+const MONGODB_URL = process.env.MONGODB_URL || 'mongodb+srv://treysonsearle:v89ucx123@cluster0.bahlq.mongodb.net/Store?retryWrites=true';
+
+
 mongoose
   .connect(
-    'mongodb+srv://treysonsearle:v89ucx123@cluster0.bahlq.mongodb.net/Store?retryWrites=true'
+    MONGODB_URL, options
   )
   .then(result => {
     User.findOne().then(user => {
