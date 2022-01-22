@@ -11,10 +11,29 @@ const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
       api_key:
-        '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'
+        'SG.pvzTfJauTCioHMl68PhwBQ.dOq9sjgEpsMGlqA12lWe00p1XrwZUebEbDjX7itI3G'
     }
   })
 );
+
+
+// const sgMail = require('@sendgrid/mail')
+// sgMail.setApiKey('SG.pvzTfJauTCioHMl68PhwBQ.dOq9sjgEpsMGlqA12lWe00p1XrwZUebEbDjX7itI3G')
+// const msg = {
+//   to: 'test@example.com', // Change to your recipient
+//   from: 'test@example.com', // Change to your verified sender
+//   subject: 'Sending with SendGrid is Fun',
+//   text: 'and easy to do anywhere, even with Node.js',
+//   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// }
+// sgMail
+//   .send(msg)
+//   .then(() => {
+//     console.log('Email sent')
+//   })
+//   .catch((error) => {
+//     console.error(error)
+//   })
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
@@ -203,7 +222,7 @@ exports.postReset = (req, res, next) => {
         res.redirect('/');
         transporter.sendMail({
           to: req.body.email,
-          from: 'shop@node-complete.com',
+          from: 'treyson.searle96@gmail.com',
           subject: 'Password reset',
           html: `
             <p>You requested a password reset</p>
