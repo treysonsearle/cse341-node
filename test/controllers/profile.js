@@ -6,7 +6,7 @@ exports.getProfiles = (req, res, next) => {
    User.find().then(users => {
       console.log(users)
       res.render('profile/profile', {
-         prods: users,
+         users: users,
          pageTitle: 'Profiles',
          path: '/profiles'
       });

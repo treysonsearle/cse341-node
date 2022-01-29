@@ -1,12 +1,30 @@
 <%- include('../includes/head.ejs') %>
    <link rel="stylesheet" href="/css/forms.css">
-   <link rel="stylesheet" href="/css/profile.css">
+   <link rel="stylesheet" href="/css/product.css">
    </head>
 
    <body>
       <%- include('../includes/navigation.ejs') %>
 
          <main>
-            <div>This is the Profile</div>
+            <% if (users.length> 0) { %>
+               <div class="grid">
+                  <% for (let user of users) { %>
+                     <article class="card product-item">
+                        <div class="card__image">
+                           <img src="<%=`https://robohash.org/${user.email}` %>" alt="robot">
+                        </div>
+                        <div class="card__content">
+                           <p class="product__description">
+                              <%= user.email %>
+                           </p>
+                        </div>
+
+                     </article>
+                     <% } %>
+               </div>
+               <% } else { %>
+                  <h1>No Profiles Found!</h1>
+                  <% } %>
          </main>
          <%- include('../includes/end.ejs') %>
